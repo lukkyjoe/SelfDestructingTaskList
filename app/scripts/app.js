@@ -1,5 +1,24 @@
 var app = angular.module("myTaskList", ["ui.router", "firebase"]);
 
+app.config(['$stateProvider','$locationProvider', function($stateProvider, $locationProvider){
+//   did the below because of: https://docs.angularjs.org/error/$location/nobase 
+  $locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false
+});
+ 
+   $stateProvider.state('landing', {
+     url: '/',
+     controller: 'landingController',
+     template: "<body>testing some text</body>"
+    })
+   $stateProvider.state('landing2', {
+     url: '/sup',
+     controller: 'landingController',
+     template: "<body>testing some sup</body>"
+    })   
+  }]);
+
 app.controller("landingController", function($scope, $firebase, $firebaseObject, $firebaseArray) {
   var ref = new Firebase("https://popping-torch-4959.firebaseio.com/messages");
   $scope.messages = $firebaseArray(ref);
@@ -17,28 +36,7 @@ app.controller("landingController", function($scope, $firebase, $firebaseObject,
   syncObject.$bindTo($scope, "data")
 });
 
-// app.config(['$stateProvider','$locationProvider', function($stateProvider, $locationProvider){
-//    $locationProvider.html5Mode(true);
- 
-//    $stateProvider.state('landing', {
-//      url: '/',
-//      controller: 'landingController',
-//      template: "<input type='text' ng-model='data.text'/>"
-//     })
-//   }]);
-              
-//app.controller('landingController',['$scope',function($scope){}]);
 
-// blocJams.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
-//    $locationProvider.html5Mode(true);
- 
-//    $stateProvider.state('landing', {
-//      url: '/',
-//      controller: 'Landing.controller',
-//      templateUrl: '/templates/landing.html'
-//    });
-//  }]);
- 
-//  // This is a cleaner way to call the controller than crowding it on the module definition.
-//  blocJams.controller('Landing.controller', ['$scope', function($scope) {
-//    $scope.subText = "Turn the music up!";
+              
+
+
