@@ -1,7 +1,9 @@
 var app = angular.module("myTaskList", ["ui.router", "firebase"]);
 
 app.config(['$stateProvider','$locationProvider', function($stateProvider, $locationProvider){
-   $locationProvider.html5Mode({
+//    $locationProvider.html5Mode(true);
+//   did the below because of: https://docs.angularjs.org/error/$location/nobase 
+  $locationProvider.html5Mode({
   enabled: true,
   requireBase: false
 });
@@ -9,12 +11,12 @@ app.config(['$stateProvider','$locationProvider', function($stateProvider, $loca
    $stateProvider.state('landing', {
      url: '/',
      controller: 'landingController',
-     template: "<body>testing some text</body>"
+     template: "<input type=text ng-model='data.expirationdate'>"
     })
    $stateProvider.state('landing2', {
      url: '/sup',
      controller: 'landingController',
-     template: "<body>testing some sup</body>"
+     templateUrl: "/sup.html"
     })   
   }]);
 
