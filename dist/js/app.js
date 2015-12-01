@@ -16,7 +16,7 @@ app.config(['$stateProvider','$locationProvider', function($stateProvider, $loca
    $stateProvider.state('landing2', {
      url: '/sup',
      controller: 'landingController',
-     templateUrl: "/sup.html"
+     templateUrl: '/templates/sup.html'
     })   
   }]);
 
