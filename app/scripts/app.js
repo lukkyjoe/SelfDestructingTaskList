@@ -11,7 +11,8 @@ app.config(['$stateProvider','$locationProvider', function($stateProvider, $loca
    $stateProvider.state('landing', {
      url: '/',
      controller: 'landingController',
-     template: "<input type=text ng-model='data.expirationdate'>"
+     template: ""
+//      <input type=text ng-model='data.expirationdate'>
     })
    $stateProvider.state('landing2', {
      url: '/sup',
@@ -25,16 +26,16 @@ app.controller("landingController", function($scope, $firebase, $firebaseObject,
   $scope.messages = $firebaseArray(ref);
   
   // add new items to the array
-  // the message is automatically added to our Firebase database!
-//   $scope.addMessage = function() {
-//     $scope.messages.$add($scope.data.text);
-//   };
+  $scope.addMessage = function() {
+    $scope.messages.$add({
+      text: $scope.newMessageText,
+      timestamp: Math.floor(Date.now()/1000),
+      
+    });
+  };
   
-  // download the data into a local object
-  var syncObject = $firebaseObject(ref);
-  // synchronize the object with a three-way data binding
-  // click on `index.html` above to see it used in the DOM!
-  syncObject.$bindTo($scope, "data")
+
+   
 });
 
 

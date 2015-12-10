@@ -12,11 +12,18 @@
 
 </head>
   <body>
-    <div ui-view></div>
+    <form ng-submit="addMessage()">
+      <input ng-model="newMessageText" />
+      <button type="submit">Add Message</button>
+    </form>
   </body>
 
-<!--   <body ng-controller="landingController">
-    <li ng-repeat="message in messages">{{message.text}}</li>
+  <body ng-controller="landingController">
+    <ul ng-repeat="item in messages">{{item.text}} : {{item.timestamp}}
+      <li ng-show="Date.now() - item.timestamp < 30"> shorter than 30 seconds </li>
+      <li ng-show="Date.now() - item.timestamp > 30"> should not show </li>
+    </ul>
+      
 
-  </body> -->
+  </body>
 </html>
