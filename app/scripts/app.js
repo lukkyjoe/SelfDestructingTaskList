@@ -29,11 +29,14 @@ app.controller("landingController", function($scope, $firebase, $firebaseObject,
   $scope.addMessage = function() {
     $scope.messages.$add({
       text: $scope.newMessageText,
-      timestamp: Math.floor(Date.now()/1000),
+      timestamp: Math.floor(Date.now()/1000)
       
     });
-  };
   
+  };
+  $scope.timeDiff = function(item) {
+    return (Date.now()/1000) - item.timestamp
+  }
 
    
 });

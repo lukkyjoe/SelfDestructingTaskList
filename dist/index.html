@@ -19,9 +19,9 @@
   </body>
 
   <body ng-controller="landingController">
-    <ul ng-repeat="item in messages">{{item.text}} : {{item.timestamp}}
-      <li ng-show="Date.now() - item.timestamp < 30"> shorter than 30 seconds </li>
-      <li ng-show="Date.now() - item.timestamp > 30"> should not show </li>
+    <ul ng-repeat="item in messages">
+      <li ng-hide="timeDiff(item) >= 30">{{item.text}} : {{item.timestamp}}</li>
+
     </ul>
       
 
