@@ -12,6 +12,8 @@
 
 </head>
   <body>
+    <a href="/">Active tasks</a>
+    <a ui-sref="landing2">Expired tasks</a>
     <form ng-submit="addMessage()">
       <input ng-model="newMessageText" />
       <button type="submit">Add Message</button>
@@ -19,10 +21,12 @@
   </body>
 
   <body ng-controller="landingController">
-    <ul ng-repeat="item in messages">
+    <div ui-view></div>
+    
+<!--         <ul ng-repeat="item in messages">
       <li ng-hide="timeDiff(item) >= 30">{{item.text}} : {{item.timestamp}}</li>
 
-    </ul>
+    </ul> -->
       
 
   </body>

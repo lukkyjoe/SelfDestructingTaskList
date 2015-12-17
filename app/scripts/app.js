@@ -11,13 +11,13 @@ app.config(['$stateProvider','$locationProvider', function($stateProvider, $loca
    $stateProvider.state('landing', {
      url: '/',
      controller: 'landingController',
-     template: ""
+     template: "<ul ng-repeat='item in messages'> <li ng-show='timeDiff(item) < 30'>{{item.text}} : {{item.timestamp}}</li> </ul>"
 //      <input type=text ng-model='data.expirationdate'>
     })
    $stateProvider.state('landing2', {
-     url: '/sup',
+     url: '/expired',
      controller: 'landingController',
-     templateUrl: '/templates/sup.html'
+     template: "testing landing2 <ul ng-repeat='item in messages'> <li ng-show='timeDiff(item) >= 30'>{{item.text}} : {{item.timestamp}}</li> </ul>"
     })   
   }]);
 
