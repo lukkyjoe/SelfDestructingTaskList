@@ -16,6 +16,12 @@
     <a ui-sref="landing2">Expired tasks</a>
     <form ng-submit="addMessage()">
       <input ng-model="newMessageText" />
+      <select ng-model="priority">
+        <option value="0">high</option>
+        <option value="1">medium</option>
+        <option value="2">low</option>
+      </select>
+      <a ng-click=""></a>
       <button type="submit">Add Message</button>
     </form>
   </body>

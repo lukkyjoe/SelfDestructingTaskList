@@ -11,13 +11,13 @@ app.config(['$stateProvider','$locationProvider', function($stateProvider, $loca
    $stateProvider.state('landing', {
      url: '/',
      controller: 'landingController',
-     template: "<ul ng-repeat='item in messages'> <li ng-show='timeDiff(item) < 30'>{{item.text}} : {{item.timestamp}}</li> </ul>"
+     template: "<ul ng-repeat='item in messages | orderBy:\"priority\"'> <li ng-show='timeDiff(item) < 30'>{{item.text}} : {{item.priority}} : {{item.timestamp}}</li> </ul>"
 //      <input type=text ng-model='data.expirationdate'>
     })
    $stateProvider.state('landing2', {
      url: '/expired',
      controller: 'landingController',
-     template: "testing landing2 <ul ng-repeat='item in messages'> <li ng-show='timeDiff(item) >= 30'>{{item.text}} : {{item.timestamp}}</li> </ul>"
+     template: "testing landing2 <ul ng-repeat='item in messages'> <li ng-show='timeDiff(item) >= 30'>{{item.text}} : {{item.priority}} : {{item.timestamp}}</li> </ul>"
     })   
   }]);
 
@@ -29,11 +29,16 @@ app.controller("landingController", function($scope, $firebase, $firebaseObject,
   $scope.addMessage = function() {
     $scope.messages.$add({
       text: $scope.newMessageText,
-      timestamp: Math.floor(Date.now()/1000)
-      
+      timestamp: Math.floor(Date.now()/1000),
+      priority: $scope.priority,
+      completed: false
     });
   
   };
+  
+//   $scope.updateMessage = function(){
+//     $scope.messages.$update
+//   }
   $scope.timeDiff = function(item) {
     return (Date.now()/1000) - item.timestamp
   }
